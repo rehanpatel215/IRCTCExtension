@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "IRCTC Smart Autofill",
+  "version": "1.0.0",
+  "description": "Automatically fills passenger details on IRCTC to save time.",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://*.irctc.co.in/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "IRCTC Autofill"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.irctc.co.in/*"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ]
+}

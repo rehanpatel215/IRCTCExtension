@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IRCTC Autofill</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="brand">
+        <h1>🚆 IRCTC Autofill</h1>
+      </div>
+      <label class="toggle">
+        <input type="checkbox" id="enableToggle" checked>
+        <span class="slider round"></span>
+      </label>
+    </header>
+
+    <main class="main-content">
+      <section class="section">
+        <div class="section-header">
+          <h2>Active Profile</h2>
+          <select id="profileSelector" class="profile-select">
+            <option value="default">Default Profile</option>
+          </select>
+        </div>
+        <div class="input-group full-width" style="margin-bottom: 12px;">
+          <input type="text" id="profileName" placeholder="Profile Name (e.g. Family)" style="width: 100%;">
+        </div>
+      </section>
+      
+      <section class="section">
+        <div class="section-header">
+          <h2>Booking Quota</h2>
+        </div>
+        <div class="form-grid">
+          <div class="input-group full-width">
+            <label>Select Quota</label>
+            <select id="quotaSelector">
+              <option value="GN">GENERAL</option>
+              <option value="TQ">TATKAL</option>
+              <option value="PT">PREMIUM TATKAL</option>
+              <option value="LD">LADIES</option>
+              <option value="SS">LOWER BERTH/SR. CITIZEN</option>
+              <option value="HP">PERSON WITH DISABILITY</option>
+              <option value="DF">DUTY FREE PASS</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="section">
+        <div class="section-header">
+          <h2>Passengers</h2>
+        </div>
+        <div id="passengersContainer">
+          <!-- Passenger forms will be injected here -->
+        </div>
+        <button id="addPassengerBtn" class="btn btn-outline">+ Add Passenger</button>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2>Other Preferences</h2>
+        </div>
+        <div class="form-grid">
+          <div class="checkbox-group full-width">
+            <label class="checkbox-container">
+              <input type="checkbox" id="autoUpgrade">
+              <span class="checkmark"></span>
+              Consider for Auto Upgrade
+            </label>
+          </div>
+          <div id="confirmBerthContainer" class="checkbox-group full-width hidden">
+            <label class="checkbox-container">
+              <input type="checkbox" id="confirmBerth">
+              <span class="checkmark"></span>
+              Book only if confirm berth is allotted
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2>Payment Mode</h2>
+        </div>
+        <div class="radio-group-vertical">
+          <label class="radio-container">
+            <input type="radio" name="paymentMode" value="1" checked>
+            <span class="radio-mark"></span>
+            Credit / Debit / Net Banking / Wallets
+          </label>
+          <label class="radio-container">
+            <input type="radio" name="paymentMode" value="2">
+            <span class="radio-mark"></span>
+            BHIM / UPI
+          </label>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      <div class="footer-actions">
+        <button id="saveBtn" class="btn btn-primary">Save Profile</button>
+        <button id="deleteProfileBtn" class="btn btn-danger-outline" title="Delete Profile">🗑️</button>
+      </div>
+      <button id="autofillBtn" class="btn btn-action">Autofill Profile</button>
+    </footer>
+    
+    <div id="statusMessage" class="status-message"></div>
+  </div>
+
+  <template id="passengerTemplate">
+    <div class="passenger-card">
+      <div class="passenger-header">
+        <span class="passenger-title">Passenger <span class="passenger-number"></span></span>
+        <button class="remove-btn" title="Remove Passenger">×</button>
+      </div>
+      <div class="form-grid passenger-fields">
+        <div class="input-group full-width">
+          <label>Name</label>
+          <input type="text" class="p-name" placeholder="Full Name" required>
+        </div>
+        <div class="input-group">
+          <label>Age</label>
+          <input type="number" class="p-age" placeholder="Age" min="1" max="125" required>
+        </div>
+        <div class="input-group">
+          <label>Gender</label>
+          <select class="p-gender">
+            <option value="">Select</option>
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+            <option value="T">Transgender</option>
+          </select>
+        </div>
+        <div class="input-group full-width">
+          <label>Berth Preference</label>
+          <select class="p-berth">
+            <option value="">No Preference</option>
+            <option value="LB">Lower</option>
+            <option value="MB">Middle</option>
+            <option value="UB">Upper</option>
+            <option value="SL">Side Lower</option>
+            <option value="SU">Side Upper</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <script src="popup.js"></script>
+</body>
+</html>
